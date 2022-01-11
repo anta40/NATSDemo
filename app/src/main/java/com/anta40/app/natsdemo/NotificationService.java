@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -112,14 +113,14 @@ public class NotificationService extends Service {
         }
 
         Intent intent = new Intent(this, MainActivity.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //intent.addFlags(PendingIntent.FLAG_IMMUTABLE);
         intent.putExtras(bundleddata);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 654731, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent.FLAG_MUTABLE);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "test-channel")
-               // .setSmallIcon(R.drawable.app_icon)
+                .setSmallIcon(R.mipmap.ic_launcher)
 //                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                 .setContentTitle("Test Request")
                 .setContentText("Test Request")
